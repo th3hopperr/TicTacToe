@@ -23,6 +23,7 @@ const score = document.getElementById("score");
 const gameBoard = document.getElementById('gameBoard');
 const playerTurn = document.getElementById('playerTurn');
 const state = document.querySelector('div');
+const playersInput = document.querySelector('.players')
 let playerName = '';
 
 
@@ -43,6 +44,24 @@ let gameState = {
     ],
     currentPlayer: 0
 }
+
+const resetButtonz = document.querySelector('.reset')
+      resetButtonz.addEventListener('click', handleUpdate )
+      // reset gameState set all arrays to null
+      function handleUpdate(){
+        gameBoard.innerHTML = ''
+        console.log('click')
+        gameState = {
+          players: ['x' , 'o'],
+          board: [
+              [null, null, null],
+              [null, null, null],
+              [null, null, null],
+          ],
+          currentPlayer: 0
+      }
+      renderBoard()
+      startGame()}
 
 function winState0(player) {
   if(gameState.board[0][0] === player && gameState.board[0][1] === player && gameState.board[0][2]){
@@ -100,11 +119,7 @@ function winState7(player) {
   return false;
 }
 
-function renderResetButton() {
-  const resetButton = document.createElement('button') 
-  resetButton.textContent = 'restart';
-  return reset
-}
+
 
 function renderBoard(){
   
@@ -160,47 +175,32 @@ console.log(cellidx)
 
 
 
-  function startGame(){
+  
     document.querySelector('.submitButton').addEventListener('click', (e) => {
       e.preventDefault()
-      console.log(document.querySelector('.x').value)
+      gameState.board.innerHTML = ''
+      playersInput.style.display = 'none'
       document.querySelector('.player1').innerText = document.querySelector('.x').value
       document.querySelector('.player2').innerText = document.querySelector('.o').value
-      
+      renderBoard()
       })
       //delete form
-      gameState.board.innerHTML = ''
-      document.getElementById(startGame)
-  }
+      
+  
 
     // function resetBoard(){
       //grab all cells and for each cell set inner html to an empty string,
-      const resetButtonz = document.querySelector('.reset')
-      resetButtonz.addEventListener('Click', () => handleUpdate )
-      // reset gameState set all arrays to null
-      function handleUpdate(){
-        console.log('click')
-        gameState = {
-          players: ['x' , 'o'],
-          board: [
-              [null, null, null],
-              [null, null, null],
-              [null, null, null],
-          ],
-          currentPlayer: 0
-      }
-      renderBoard()
-      startGame()}
+      
       // }
 console.log(resetButtonz)
 
     
 
 
-  startGame()
+ 
 
-  renderBoard();
-
+ 
+ 
   
  
 
